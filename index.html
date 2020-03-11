@@ -61,9 +61,9 @@
 
             <!-- Simple pagination for the slider -->
             <ul class="pagination">
-                <li class="pagination__item"><a class="pagination__button"></a></li>
-                <li class="pagination__item"><a class="pagination__button"></a></li>
-                <li class="pagination__item"><a class="pagination__button"></a></li>
+                <li class="pagination__item"><a class="pagination__button" id="first"></a></li>
+                <li class="pagination__item"><a class="pagination__button" id="second"></a></li>
+                <li class="pagination__item"><a class="pagination__button" id="third"></a></li>
 
             </ul>
             <div class="social">
@@ -177,9 +177,9 @@
             <div class="row">
                 <div class="col-lg-9">
                     <h4 style="text-align: justify;">"Il maggior vantaggio di essere un freelancer risiede nel poter scegliere i progetti su cui lavorare.
-                      Solo così è possibile esprimere tutte le proprie potenzialità regalando la miglior esperienza possibile.
+                      Solo così è possibile esprimere tutte le proprie potenzialità regalando la miglior esperienza al cliente.
                       Alla base di un buon lavoro ci deve esssere passione e quale modo migliore di poter scegliere i propri lavori
-                      per metterci il masso impegno e tenere sempre viva la passione"</h4>
+                      per metterci il massimo impegno e tenere sempre viva la passione"</h4>
                 </div>
                 <div class="col-lg-3 mt-lg-0 mt-3 text-lg-center tablet-grid">
                     <img src="assets/images/myicon.jpg" alt="" class="img-fluid" />
@@ -293,6 +293,8 @@
 <!-- // for banner slider -->
 <script src="assets/js/momentum-slider.min.js"></script>
 <script>
+  let id = "second";
+
   (function () {
 
     var slidersContainer = document.querySelector('.sliders-container');
@@ -360,6 +362,7 @@
 
     // Initializing the images slider
     var msImages = new MomentumSlider({
+
       // Element to append the slider
       el: slidersContainer,
       // CSS class to reference the slider
@@ -367,6 +370,7 @@
       // Generate the 4 slides required
       range: [0, 2],
       rangeContent: function () {
+        
         return '<div class="ms-slide__image-container"><div class="ms-slide__image"></div></div>';
       },
       // Syncronize the other sliders
@@ -375,7 +379,7 @@
       style: {
         '.ms-slide__image': {
           transform: [{
-            scale: [1.5, 1]
+            scale: [2, 1]
           }]
         }
       },
@@ -390,6 +394,28 @@
       }
     });
 
+    var myVar;
+    var autoScroll = function(){
+      console.log(id);
+      document.getElementById(id).click();
+
+      if(id == "second"){
+        id="third";
+      }else if(id == "third"){
+        id = "first";
+      }else{
+        id = "second";
+      }
+
+
+    }
+
+
+    var autoScrollTrigger = function(){
+      myVar = setInterval(autoScroll, 2000);
+    }
+
+    autoScrollTrigger();
 
     // Select corresponding slider item when a pagination button is clicked
     pagination.addEventListener('click', function (e) {
