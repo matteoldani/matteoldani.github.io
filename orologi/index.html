@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2052BB">
+  <meta name="author" content="Bartosz Ciechanowski">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:title" content="L'Orologio Meccanico – Bartosz Ciechanowski (traduzione italiana)" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="Articolo interattivo che spiega il funzionamento di un orologio meccanico. Traduzione italiana di ciechanow.ski/mechanical-watch/" />
+  <meta property="og:locale" content="it_IT">
+  <meta name="keywords" content="scappamento,rubino,bilanciere,ancora,corona,molla motrice,carica automatica,orologio meccanico">
+  <link href="css/base.css" rel="stylesheet" type="text/css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet" async>
+  <title>L'Orologio Meccanico – Bartosz Ciechanowski</title>
+  <link href="css/watch.css" rel="stylesheet" type="text/css" />
+  <script defer src="js/base.js"></script>
+  <script defer src="models/embedded_models.js"></script>
+  <script defer src="js/watch.js"></script>
+</head>
+
+<body>
+  <div id="main_container">
+    <div id="body">
+      <div id="banner">
+        <div id="banner_wrapper">
+          <div id="banner_content">
+            <div id="site_title">
+              <a href="https://ciechanow.ski/">Bartosz Ciechanowski</a>
+            </div>
+            <div id="navigation">
+              <a href="https://ciechanow.ski/">Blog</a>
+              <a href="https://ciechanow.ski/archives">Archivio</a>
+            </div>
+            <div id="social">
+              <a class="patreon" href="https://www.patreon.com/ciechanowski" title="Patreon"><div class="patreonLogo">Patreon</div></a>
+              <a class="twitter" href="https://twitter.com/bciechanowski" title="X / Twitter"><div class="twitterLogo">X / Twitter</div></a>
+              <a class="instagram" href="https://www.instagram.com/bartoszciechanowski/" title="Instagram"><div class="igLogo">Instagram</div></a>
+              <a class="email" href="mailto:bartosz@ciechanow.ski" title="e-mail"><div class="emailLogo">e-mail</div></a>
+              <a class="rss" href="https://ciechanow.ski/atom.xml" title="RSS"><div class="rssLogo">RSS</div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="content">
+
+        <div class="article">
+          <div class="post_date">4 Maggio 2022</div>
+          <h1 class="post_title"><a href="https://ciechanow.ski/mechanical-watch/">L'Orologio Meccanico</a></h1>
+
+          <!-- Nota di traduzione -->
+          <div style="background:#f0f4ff;border-left:4px solid #2052BB;padding:1em 1.5em;margin:1em 0 1.5em 0;font-size:0.93em;line-height:1.6;">
+            <strong>Nota:</strong> Questa è una traduzione italiana non ufficiale dell'articolo originale
+            <em><a href="https://ciechanow.ski/mechanical-watch/">Mechanical Watch</a></em>
+            di <strong>Bartosz Ciechanowski</strong>, pubblicato il 4 maggio 2022 su
+            <a href="https://ciechanow.ski/">ciechanow.ski</a>.
+            Tutte le animazioni interattive, i grafici e i contenuti tecnici appartengono all'autore originale.
+            La traduzione è stata realizzata a scopo divulgativo, cercando di utilizzare la terminologia orologiera italiana corretta.
+          </div>
+
+          <div class="padding_wrapper">
+
+            <p>Nel mondo dei moderni dispositivi portatili, può sembrare incredibile che solo pochi decenni fa il modo più comodo per tenere traccia del tempo fosse un orologio meccanico. A differenza dei loro "fratelli" al quarzo ed elettronici, gli orologi meccanici possono funzionare senza batterie né componenti elettronici di alcun tipo.</p>
+
+            <p>Nel corso di questo articolo spiegherò il funzionamento del meccanismo mostrato nell'animazione qui sotto. Puoi trascinare il dispositivo per cambiare l'angolo di visione, e usare il cursore per sbirciare all'interno:</p>
+
+            <div class="drawer_container ratio_100" id="hero"></div>
+            <div id="hero_sl0"></div>
+
+            <p>Ciò che vedi qui è chiamato <em>movimento</em> – la parte interna di un orologio meccanico che di solito è racchiusa in una cassa metallica. In questo articolo mi concentro sul movimento in sé, poiché le belle casse degli orologi non fanno altro che nascondere i meccanismi intricati che sono i veri protagonisti dello spettacolo.</p>
+
+            <p>Il movimento dell'orologio è composto da molti componenti, e in questo articolo spiegherò la funzione di ciascuno. Il mondo dell'orologeria è ricco di terminologia tecnica, quindi molti componenti potrebbero avere nomi poco familiari, ma non sentirti obbligato a memorizzarli tutti – i nomi e le parti saranno <span class="color_red"><strong>codificati con colori</strong></span> per facilitare il riferimento.</p>
+
+            <p>In un orologio funzionante, molte parti sono in costante movimento. Per impostazione predefinita, tutte le animazioni in questo articolo sono <span id="global_animate_on">attive, ma se le trovi distraenti, o vuoi risparmiare energia, puoi <a href="#" class="link_button" onclick="global_animate(false);return false;">mettere in pausa globalmente</a> tutte le dimostrazioni seguenti.</span><span id="global_animate_off" class="hidden">disattivate, ma se preferisci vedere le cose in movimento durante la lettura puoi <a href="#"  class="link_button" onclick="global_animate(true);return false;">riattivare globalmente</a> le animazioni.</span></p>
+
+            <p>Sebbene il movimento dell'orologio abbia molti componenti, il sistema di misurazione del tempo – che costituisce la funzione principale di qualsiasi orologio – è composto da soli sette elementi principali che possiamo disporre in linea retta:</p>
+
+            <div class="drawer_container ratio_40" id="hero_movement"></div>
+
+            <p>Potrebbe sembrare poco, ma queste parti racchiudono molti dettagli interessanti che contribuiscono alla rotazione corretta della <span class="color_hand"><strong>lancetta dei secondi</strong></span>. Inizieremo ad esplorare questi dettagli partendo dalla fonte di energia di tutto il meccanismo.</p>
+
+            <h1 id="power">Energia<a href="#power" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>I dispositivi puramente meccanici hanno diversi modi per alimentarsi, ma uno dei metodi più semplici per immagazzinare energia è utilizzare una molla. La maggior parte delle molle che vediamo nella vita quotidiana sono molle <em>elicoidali</em>. Nell'animazione qui sotto, puoi spostare la <span class="color_red"><strong>massa</strong></span> attaccata a questo tipo di <span class="color_yellow"><strong>molla</strong></span> per vedere come rimbalza:</p>
+
+            <div class="drawer_container ratio_100" id="coil_spring"></div>
+            <div id="coil_spring_sl0" class="slider_red"></div>
+
+            <p>Quando una <span class="color_yellow"><strong>molla</strong></span> di questo tipo viene compressa, immagazzina energia che viene poi rilasciata quando la tensione di compressione è rimossa. Gli orologi meccanici utilizzano tipicamente un tipo diverso di molla – una molla <em>a torsione</em> a spirale. Questo tipo di <span class="color_yellow"><strong>molla</strong></span> si carica quando viene torta. Quando viene lasciata libera, la <span class="color_yellow"><strong>molla</strong></span> si svolge nella direzione opposta fino a tornare al suo stato naturale:</p>
+
+            <div class="drawer_container ratio_100" id="torsion_spring"></div>
+            <div id="torsion_spring_sl0" class="slider_red"></div>
+
+            <p>In un orologio meccanico vogliamo in definitiva mostrare lancette rotanti, quindi il moto di rotazione che fornisce una molla a torsione è particolarmente utile. La <span class="color_gray"><strong>molla</strong></span> in un tipico orologio meccanico ha una forma leggermente più complessa – puoi vederla di seguito nel suo stato rilassato. Trascinando il <span class="color_gray"><strong>cursore</strong></span> puoi provare ad avvolgerla in aria, ma non appena la lasci, torna immediatamente alla sua forma originale:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_s"></div>
+            <div id="mainspring_s_sl0" class="slider_gray long_slider"></div>
+
+            <p>Come puoi vedere, questa <span class="color_gray"><strong>molla</strong></span> è piuttosto robusta e vuole espandersi molto rapidamente. Per contenerla dobbiamo inserirla in un alloggiamento chiamato <span class="color_red"><strong>bariletto</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_barrel"></div>
+            <div id="mainspring_barrel_sl0" class="slider_assembly"></div>
+
+            <p>Una volta nel <span class="color_red"><strong>bariletto</strong></span>, la <span class="color_gray"><strong>molla</strong></span> vuole ancora espandersi al suo stato originale, ma la parete del <span class="color_red"><strong>bariletto</strong></span> la mantiene in posizione. Questa <span class="color_gray"><strong>molla</strong></span> è il serbatoio di energia dell'orologio e il suo nome, <em>molla motrice</em>, riflette la sua importanza.</p>
+
+            <p>Purtroppo, non possiamo ricavare alcun lavoro utile dalla <span class="color_gray"><strong>molla motrice</strong></span> in questo stato – si è già espansa alla dimensione massima possibile. Per immagazzinare più energia dobbiamo avvolgerla strettamente usando il <span class="color_yellow"><strong>perno di carica</strong></span>, che per prima cosa attaccheremo al lato interno della <span class="color_gray"><strong>molla motrice</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_arbor"></div>
+            <div id="mainspring_arbor_sl0" class="slider_assembly"></div>
+
+            <p>Se guardi con attenzione, la <span class="color_gray"><strong>molla motrice</strong></span> ha un piccolo foro vicino alla sua estremità – puoi vederlo al centro dell'animazione. Il <span class="color_yellow"><strong>perno di carica</strong></span> ha un piccolo gancio che si aggancia a quel foro:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_arbor_hook"></div>
+            <div id="mainspring_arbor_hook_sl0" class="slider_yellow"></div>
+
+            <p>Quando il <span class="color_yellow"><strong>perno di carica</strong></span> viene ruotato, trascina con sé la <span class="color_gray"><strong>molla motrice</strong></span>, facendola avvolgere. Nell'animazione qui sotto, stiamo tenendo fermo il <span class="color_red"><strong>bariletto</strong></span>, e puoi ruotare il <span class="color_yellow"><strong>perno di carica</strong></span> trascinando il cursore:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_wind0"></div>
+            <div id="mainspring_wind0_sl0" class="slider_yellow"></div>
+
+            <p>Nota che non appena rilasci il <span class="color_yellow"><strong>perno di carica</strong></span> lasciando andare il cursore, la <span class="color_gray"><strong>molla motrice</strong></span> riporterà indietro il <span class="color_yellow"><strong>perno di carica</strong></span>. Questo non è desiderabile – vogliamo invece che sia il <span class="color_red"><strong>bariletto</strong></span> a ruotare, così da poter alimentare le altre parti dell'orologio. Per ottenere lavoro utile dalla <span class="color_gray"><strong>molla motrice</strong></span>, dovremo tenere fermo il <span class="color_yellow"><strong>perno di carica</strong></span> e invece lasciare libero il <span class="color_red"><strong>bariletto</strong></span> quando vogliamo usare l'energia immagazzinata:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_wind1"></div>
+            <div id="mainspring_wind1_sl0" class="slider_yellow"></div>
+
+            <p>Vedremo presto come questo avviene nella pratica, ma per ora supporremo che il <span class="color_yellow"><strong>perno di carica</strong></span> sia tenuto fermo e che la <span class="color_gray"><strong>molla motrice</strong></span> finisca per far ruotare il <span class="color_red"><strong>bariletto</strong></span>, proprio come nell'animazione qui sopra. Prima di concludere con la <span class="color_gray"><strong>molla motrice</strong></span> e il <span class="color_red"><strong>bariletto</strong></span>, discutiamo altri due dettagli che rendono questo meccanismo più affidabile. Lascia che mostri di nuovo la molla rilassata:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_s2"></div>
+            <div id="mainspring_s2_sl0" class="slider_gray long_slider"></div>
+
+            <p>La <span class="color_blue"><strong>lamina metallica</strong></span> attaccata alla <span class="color_gray"><strong>molla motrice</strong></span> fornisce tensione aggiuntiva alla sua parte esterna. Quella <span class="color_blue"><strong>lamina metallica</strong></span> vuole tornare alla sua forma dritta, quindi spinge contro la parete del <span class="color_red"><strong>bariletto</strong></span>, creando molta attrito che mantiene la molla motrice in posizione:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_friction"></div>
+
+            <p>Questo blocca l'estremità esterna della <span class="color_gray"><strong>molla motrice</strong></span> mentre il <span class="color_yellow"><strong>perno di carica</strong></span> muove quella interna. Se continuassimo ad avvolgere la <span class="color_gray"><strong>molla</strong></span> oltre la sua capacità massima, sconfiggeremmo quell'attrito lasciando scivolare la <span class="color_gray"><strong>molla motrice</strong></span> all'interno – questo funziona come meccanismo di sicurezza per evitare la rottura dei componenti.</p>
+
+            <p>Come abbiamo visto, nel suo stato rilassato la <span class="color_gray"><strong>molla motrice</strong></span> forma una forma a S con curvatura variabile. Questo aiuta a bilanciare la tensione nelle diverse sezioni della <span class="color_gray"><strong>molla motrice</strong></span> quando si trova all'interno del <span class="color_red"><strong>bariletto</strong></span>. Nota che le sezioni interne della molla avvolta hanno un raggio molto più piccolo rispetto alle parti esterne. Se la molla rilassata fosse semplicemente un pezzo di metallo dritto, dopo l'avvolgimento le parti interne sarebbero piegate molto di più di quelle esterne. Con la molla a forma di S, le sezioni esterne della molla sono anch'esse sotto una tensione simile perché vogliono tornare alla loro curva piegata nella direzione opposta.</p>
+
+            <p>Per fissare la <span class="color_gray"><strong>molla motrice</strong></span> ed evitare che la polvere entri, chiudiamo il <span class="color_red"><strong>bariletto</strong></span> con un coperchio che scatta al suo posto:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_lid"></div>
+            <div id="mainspring_lid_sl0" class="slider_assembly"></div>
+
+            <p>Siamo riusciti a far ruotare alcune parti e si potrebbe ingenuamente pensare di poter attaccare semplicemente una <span class="color_hand"><strong>lancetta</strong></span> al <span class="color_red"><strong>bariletto</strong></span> per misurare il tempo. Purtroppo, questo non funzionerà – puoi verificarlo nell'animazione qui sotto. Puoi vedere come si comporta questo "orologio" dopo aver caricato la <span class="color_gray"><strong>molla motrice</strong></span> con il cursore e averla lasciata libera:</p>
+
+            <div class="drawer_container ratio_100" id="mainspring_wind2"></div>
+            <div id="mainspring_wind2_sl0" class="slider_yellow"></div>
+
+            <p>Dobbiamo chiaramente ancora lavorare – la <span class="color_hand"><strong>lancetta</strong></span> gira troppo velocemente e compie solo poche rotazioni prima che la <span class="color_gray"><strong>molla motrice</strong></span> all'interno del <span class="color_red"><strong>bariletto</strong></span> esaurisca l'energia immagazzinata. Questo meccanismo non ci permetterà di misurare il tempo in modo affidabile.</p>
+
+            <p>Se volessimo che il nostro orologio funzionasse continuamente per circa 40 ore con una singola carica, avremmo bisogno che la lancetta dei minuti completasse 40 rotazioni in quel tempo. Inoltre, la lancetta dei secondi dovrebbe compiere circa 40 × 60 = 2400 rotazioni complete nello stesso tempo. Dobbiamo trovare un modo per convertire un piccolo numero di giri del <span class="color_red"><strong>bariletto</strong></span> in un numero elevato di giri delle lancette. È qui che entrano in gioco gli ingranaggi.</p>
+
+            <h1 id="gears">Ingranaggi<a href="#gears" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Ho già <a href="https://ciechanow.ski/gears/">trattato gli ingranaggi</a> su questo blog in precedenza, quindi permettimi di fare un breve riepilogo. Gli ingranaggi possono essere usati per modificare la velocità di rotazione tra due assi diversi. Nell'animazione qui sotto, puoi osservarlo guardando i piccoli punti che ho messo su ciascun ingranaggio – la <span class="color_yellow"><strong>ruota gialla</strong></span>, azionata dalla più grande <span class="color_red"><strong>ruota rossa</strong></span>, impiega molto meno tempo per completare una singola rivoluzione:</p>
+
+            <div class="drawer_container ratio_100" id="gears_base"></div>
+
+            <p>Un aspetto importante di due ingranaggi accoppiati è il loro numero di denti. Ogni dente di un ingranaggio incontra uno spazio tra i denti dell'altro, quindi nell'unità di tempo entrambi gli ingranaggi ruotano dello stesso numero di denti. Se il numero di denti nei due ingranaggi è diverso, essi impiegheranno un tempo diverso per completare una singola rotazione. Nell'animazione qui sotto, puoi modificare il <em>rapporto</em> del numero di denti tra la <span class="color_red"><strong>ruota rossa</strong></span> motrice e la <span class="color_yellow"><strong>ruota gialla</strong></span> condotta per vedere come questo influisce sulla velocità di rotazione di quella <span class="color_yellow"><strong>ruota gialla</strong></span>:</p>
+
+            <div class="drawer_container ratio_50" id="gears_base2"></div>
+            <div id="gears_base2_seg0"></div>
+
+            <p>Questi ingranaggi sono progettati per lavorare insieme, quindi il rapporto dei denti è equivalente al rapporto dei raggi degli ingranaggi. Quando la <span class="color_red"><strong>ruota motrice</strong></span> ha <a href="#" class="link_button" onclick="gears_base2_f0();return false;">più denti</a> della <span class="color_yellow"><strong>ruota condotta</strong></span>, la <span class="color_yellow"><strong>ruota condotta</strong></span> compie più rotazioni della <span class="color_red"><strong>ruota motrice</strong></span>. Possiamo usare questo comportamento per far ruotare la lancetta dei secondi di un orologio molte volte per ogni singola rotazione del bariletto.</p>
+
+            <p>Consideriamo quanto dobbiamo aumentare la velocità. Il bariletto può ruotare quasi 7 volte con una singola carica, ma vogliamo che la lancetta dei secondi completi circa 2400 rivoluzioni nello stesso tempo. Abbiamo bisogno che il rapporto dei denti, ovvero il rapporto dei raggi, sia di circa 343:1. Vediamo come apparirebbe nella pratica. Nell'animazione qui sotto, puoi usare il cursore per guardare i due ingranaggi da più lontano:</p>
+
+            <div class="drawer_container ratio_50" id="gears_base3"></div>
+            <div id="gears_base3_sl0"></div>
+
+            <p>Come puoi vedere, queste proporzioni sono assurde – per far entrare la <span class="color_red"><strong>ruota rossa</strong></span> in un orologio di dimensioni ragionevoli, la <span class="color_yellow"><strong>ruota gialla</strong></span> dovrebbe essere minuscola e entrambe le ruote avrebbero denti molto fragili e microscopici.</p>
+
+            <p>Gli orologi meccanici utilizzano invece un <em>treno</em> di ruote con più ingranaggi che lavorano a coppie – ogni coppia aumenta la velocità in una certa misura. Nell'animazione qui sotto, puoi vedere le quattro ruote che partecipano a questa moltiplicazione. Nota che su quasi tutti gli assi di rotazione ci sono due ingranaggi. Puoi controllare la velocità di rotazione di questo treno di ruote usando il cursore:</p>
+
+            <div class="drawer_container ratio_50" id="gear_train"></div>
+            <div id="gear_train_sl0"></div>
+
+            <p>Il <span class="color_red"><strong>bariletto</strong></span> funge da <span class="color_red"><strong>prima ruota</strong></span>, aziona la <span class="color_orange"><strong>seconda ruota</strong></span>, che aziona la <span class="color_yellow"><strong>terza ruota</strong></span>, che infine aziona la <span class="color_green"><strong>quarta ruota</strong></span>. Nota che ogni grande ruota aziona un ingranaggio più piccolo chiamato <em>pignone</em>. Un pignone è montato sullo stesso asse della successiva ruota grande, così siamo in grado di continuare ad aumentare la velocità su ogni asse. Questo approccio ha significativi vantaggi – siamo in grado di rendere il meccanismo complessivo molto più piccolo e utilizzeremo presto una delle ruote intermedie, che ruota a una velocità minore, per azionare le lancette dei minuti e delle ore.</p>
+
+            <p>Prima di concludere con gli ingranaggi, lascia che accenni brevemente alla forma dei loro denti. Mentre molte macchine più grandi usano un profilo <a href="https://ciechanow.ski/gears/#strings-attached">ad evolvente</a> per il profilo dei denti, gli orologi meccanici usano comunemente profili <em>epicicloidi</em>, ottenuti <a href="https://www.tec-science.com/mechanical-power-transmission/cycloidal-gear/geometry-of-cycloidal-gears/">facendo rotolare un cerchio sulla superficie di un altro cerchio</a>.</p>
+
+            <p>Vediamo come funziona il cosiddetto <em>treno di ruote</em> che abbiamo assemblato quando carichiamo la <span class="color_gray"><strong>molla motrice</strong></span> attraverso il <span class="color_yellow"><strong>perno di carica</strong></span> e lasciamo correre l'orologio:</p>
+
+            <div class="drawer_container ratio_50" id="gear_train2"></div>
+            <div id="gear_train2_sl0" class="slider_yellow"></div>
+
+            <p>Abbiamo certamente raggiunto l'obiettivo di far ruotare la <span class="color_hand"><strong>lancetta dei secondi</strong></span> molte volte per ogni singola rotazione del <span class="color_red"><strong>bariletto</strong></span>, ma la velocità di rivoluzione di quella <span class="color_hand"><strong>lancetta</strong></span> è ancora completamente incontrollata. Dobbiamo trovare un modo per controllare il ritmo di rilascio dell'energia immagazzinata nella <span class="color_gray"><strong>molla motrice</strong></span> – lo faremo con lo <em>scappamento</em>.</p>
+
+            <h1 id="escapement">Scappamento<a href="#escapement" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Iniziamo guardando i due componenti che costituiscono lo scappamento – la <span class="color_cyan"><strong>ruota di scappamento</strong></span> e l'<span class="color_blue"><strong>ancora</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="escapement_parts"></div>
+
+            <p>Nota la forma insolita dei denti della <span class="color_cyan"><strong>ruota di scappamento</strong></span> – è molto diversa dagli ingranaggi che abbiamo visto prima. La sua parte superiore ospita un ingranaggio di forma normale che può essere usato per far girare quella <span class="color_cyan"><strong>ruota</strong></span>.</p>
+
+            <p>L'<span class="color_blue"><strong>ancora</strong></span> stessa è fatta di metallo, ma nota le due parti <span class="color_jewel"><strong>rosate</strong></span> trasparenti alle sue estremità. Queste sono <span class="color_jewel"><strong>pietre</strong></span> di <a href="https://it.wikipedia.org/wiki/Rubino">rubino</a> sintetico. Quel materiale non è solo molto duro, il che previene la sua usura, ma ha anche un basso coefficiente di attrito con l'acciaio. Vediamo perché queste proprietà sono importanti osservando come questi due componenti interagiscono tra loro:</p>
+
+            <div class="drawer_container ratio_100" id="escapement_action"></div>
+            <div id="escapement_action_sl0"></div>
+
+            <p>La <span class="color_cyan"><strong>ruota di scappamento</strong></span> vuole ruotare come indicato dalla <span class="color_red"><strong>freccia rossa</strong></span>. L'<span class="color_blue"><strong>ancora</strong></span> impedisce quel movimento, ma muovendo l'<span class="color_blue"><strong>ancora</strong></span> avanti e indietro, permettiamo alla <span class="color_cyan"><strong>ruota di scappamento</strong></span> di <em>sfuggire</em> brevemente da quella prigione, per essere poi fermata di nuovo.</p>
+
+            <p>Vedremo i dettagli di quella interazione tra qualche paragrafo, ma per ora questo meccanismo ci permette di controllare la rotazione della <span class="color_cyan"><strong>ruota di scappamento</strong></span> semplicemente spostando l'<span class="color_blue"><strong>ancora</strong></span> da un lato all'altro. Vediamo come questi pezzi si inseriscono nel resto del meccanismo. Nell'animazione qui sotto, ho già caricato la molla, così il <span class="color_red"><strong>bariletto</strong></span>, attraverso il treno di ruote, cerca di far ruotare la <span class="color_cyan"><strong>ruota di scappamento</strong></span>. Usando i due pulsanti puoi cambiare la posizione dell'<span class="color_blue"><strong>ancora</strong></span>:</p>
+
+            <div class="drawer_container ratio_50" id="gear_train3"></div>
+            <div id="gear_train3_seg0"></div>
+
+            <p>La molla motrice vuole svolgersi facendo ruotare la <span class="color_cyan"><strong>ruota di scappamento</strong></span>, ma l'<span class="color_blue"><strong>ancora</strong></span> lo permette solo per un breve periodo di tempo. A causa della riduzione degli ingranaggi, la rotazione del <span class="color_red"><strong>bariletto</strong></span> è praticamente invisibile. Tuttavia, se osservi la <span class="color_hand"><strong>lancetta</strong></span> attaccata alla <span class="color_green"><strong>quarta ruota</strong></span>, puoi vederla ruotare delicatamente mentre sposti l'<span class="color_blue"><strong>ancora</strong></span> avanti e indietro.</p>
+
+            <p>Il piccolo meccanismo di misurazione del tempo è quasi completamente funzionale ora. L'ultimo pezzo mancante è un dispositivo che faccia oscillare automaticamente l'<span class="color_blue"><strong>ancora</strong></span> avanti e indietro. Tuttavia, affinché l'orologio misuri il tempo correttamente, quell'azione oscillante deve avvenire a una cadenza appropriata. È qui che entra in gioco il <em>bilanciere</em> – è il cuore pulsante di un orologio.</p>
+
+            <h1 id="balance">Bilanciere<a href="#balance" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Torniamo alla prima molla a torsione che abbiamo visto – ricorda che una volta che la ruoti dalla sua posizione originale, oscillerà avanti e indietro, fino a fermarsi dopo un po':</p>
+
+            <div class="drawer_container ratio_100" id="torsion_spring2"></div>
+            <div id="torsion_spring2_sl0" class="slider_red"></div>
+
+            <p>Possiamo controllare il tasso di questo moto periodico regolando due parametri. Il primo è la <em>rigidità</em> della molla, che dipende principalmente dalla sua altezza, spessore e lunghezza, nonché dal tipo di materiale di cui è fatta. Il secondo è la massa e la sua distribuzione, o più precisamente, il <a href="https://it.wikipedia.org/wiki/Momento_di_inerzia">momento d'inerzia</a> dell'oggetto che la molla mette in rotazione. Il momento d'inerzia aumenta quando più massa è posta più lontano dall'asse di rotazione. Nell'animazione qui sotto, puoi regolare sia la <span class="color_yellow"><strong>rigidità</strong></span> della molla che il <span class="color_blue"><strong>momento d'inerzia</strong></span> della massa allegata per vedere come questi parametri influenzano il periodo di rotazione:</p>
+
+            <div class="drawer_container ratio_100" id="torsion_spring3"></div>
+            <div id="torsion_spring3_sl0" class="slider_red"></div>
+            <div id="torsion_spring3_sl1" class="slider_yellow"></div>
+            <div id="torsion_spring3_sl2" class="slider_blue"></div>
+
+            <p>Regolando attentamente questi parametri, possiamo far oscillare questo sistema a una frequenza desiderata. Questa idea di usare una molla a torsione con una massa allegata è esattamente ciò che gli orologi meccanici usano come fonte di misura precisa del tempo. Il bilanciere è formato dalla <span class="color_violet"><strong>ruota del bilanciere</strong></span> attaccata alla <span class="color_gray"><strong>spirale del bilanciere</strong></span>. In questo orologio la <span class="color_violet"><strong>ruota del bilanciere</strong></span> oscilla avanti e indietro a una frequenza piuttosto elevata:</p>
+
+            <div class="drawer_container ratio_100" id="balance_wheel"></div>
+            <div id="balance_wheel_sl0" class="slider_violet"></div>
+
+            <p>Sul <a href="#" class="link_button" onclick="balance_wheel_f0();return false;">lato inferiore</a> della ruota del bilanciere troverai un'altra pietra di rubino rosata chiamata <span class="color_jewel"><strong>pietra d'impulso</strong></span>. Pur essendo piccola, questa parte è molto importante – questa <span class="color_jewel"><strong>pietra</strong></span> colpisce l'altra estremità dell'<span class="color_blue"><strong>ancora</strong></span> mentre la <span class="color_violet"><strong>ruota del bilanciere</strong></span> ruota, il che a sua volta spinge l'<span class="color_blue"><strong>ancora</strong></span> avanti e indietro. Vediamo prima una panoramica di come la <span class="color_violet"><strong>ruota del bilanciere</strong></span> interagisce con le altre parti. Nell'animazione qui sotto, puoi rallentare con il cursore:</p>
+
+            <div class="drawer_container ratio_40" id="gear_train4"></div>
+            <div id="gear_train4_sl0"></div>
+
+            <p>Guardiamo questa interazione da vicino, perché merita maggiore attenzione. Nell'animazione qui sotto, puoi scorrere avanti e indietro nel tempo per vedere tutta l'azione mentre accade:</p>
+
+            <div class="drawer_container ratio_100" id="gear_train5"></div>
+            <div id="gear_train5_sl0" class="long_slider"></div>
+
+            <p>
+              <span class="gear_train5_explainer" id="gear_train5_explainer1">il <span class="color_violet"><strong>bilanciere</strong></span> oscilla indietro</span>
+              <span class="gear_train5_explainer" id="gear_train5_explainer2">la <span class="color_jewel"><strong>pietra d'impulso</strong></span> colpisce l'<span class="color_blue"><strong>ancora</strong></span>, spostandola dalla posizione</span>
+              <span class="gear_train5_explainer" id="gear_train5_explainer3">la <span class="color_cyan"><strong>ruota di scappamento</strong></span> si sblocca e spinge la <span class="color_jewel"><strong>pietra</strong></span> dell'<span class="color_blue"><strong>ancora</strong></span></span>
+              <span class="gear_train5_explainer" id="gear_train5_explainer4">l'<span class="color_blue"><strong>ancora</strong></span> spinge la <span class="color_jewel"><strong>pietra d'impulso</strong></span> e la <span class="color_violet"><strong>ruota del bilanciere</strong></span></span>
+              <span class="gear_train5_explainer" id="gear_train5_explainer5">la <span class="color_cyan"><strong>ruota di scappamento</strong></span> si blocca di nuovo</span>
+              <span class="gear_train5_explainer" id="gear_train5_explainer6">il <span class="color_violet"><strong>bilanciere</strong></span> continua la sua oscillazione</span>
+            </p>
+
+            <p>Mentre il <span class="color_violet"><strong>bilanciere</strong></span> oscilla, la <span class="color_jewel"><strong>pietra d'impulso</strong></span> colpisce l'<span class="color_blue"><strong>ancora</strong></span>, che sblocca la <span class="color_cyan"><strong>ruota di scappamento</strong></span>. Una volta sbloccata, la <span class="color_cyan"><strong>ruota di scappamento</strong></span> alimentata dalla molla motrice spinge sull'<span class="color_blue"><strong>ancora</strong></span> che, attraverso la <span class="color_jewel"><strong>pietra d'impulso</strong></span>, spinge sul <span class="color_violet"><strong>bilanciere</strong></span> stesso. Questo fa sì che il <span class="color_violet"><strong>bilanciere</strong></span> acquisti energia, il che impedisce al bilanciere di fermarsi dopo un po' – è equivalente a dare una spinta a una persona che oscilla sull'altalena. Quando il <span class="color_violet"><strong>bilanciere</strong></span> torna indietro, esegue la stessa azione, solo nella direzione opposta.</p>
+
+            <p>Potresti anche aver notato una sottile danza tra il <span class="color_yellow"><strong>cornetto</strong></span> all'estremità dell'<span class="color_blue"><strong>ancora</strong></span> e il <span class="color_green"><strong>disco con tacca</strong></span> sulla <span class="color_violet"><strong>ruota del bilanciere</strong></span>. Queste parti garantiscono che l'<span class="color_blue"><strong>ancora</strong></span> possa cambiare lato solo al momento opportuno – è un meccanismo di sicurezza che impedisce all'orologio di bloccarsi quando viene sbalzato o caduto:</p>
+
+            <div class="drawer_container ratio_100" id="gear_train7"></div>
+            <div id="gear_train7_sl0"></div>
+
+            <p>Una volta che l'<span class="color_blue"><strong>ancora</strong></span> sblocca la <span class="color_cyan"><strong>ruota di scappamento</strong></span>, quella ruota deve iniziare a girare molto rapidamente. Ecco perché le ruote nel treno di ruote hanno dei fori – questo riduce il loro momento d'inerzia in modo che il <span class="color_red"><strong>bariletto</strong></span> possa accelerarle più rapidamente.</p>
+
+            <p>È anche importante menzionare che il treno di ruote non solo aumenta la velocità degli ingranaggi, ma riduce anche le forze che agiscono sul bilanciere. Il <span class="color_red"><strong>bariletto</strong></span> stesso gira con molta forza, ma alla <span class="color_cyan"><strong>ruota di scappamento</strong></span> il <a href="http://ciechanow.ski/gears/#torque">momento torcente</a> è notevolmente ridotto, il che impedisce alla <span class="color_cyan"><strong>ruota di scappamento</strong></span> di spingere l'<span class="color_blue"><strong>ancora</strong></span> e quindi il <span class="color_violet"><strong>bilanciere</strong></span> con troppa energia.</p>
+
+            <p>Diamo un'ultima occhiata a tutto ciò che abbiamo costruito finora. Ora faccio girare il meccanismo alla sua velocità normale:</p>
+
+            <div class="drawer_container ratio_50" id="gear_train6"></div>
+
+            <p>In questo movimento d'orologio, il <span class="color_violet"><strong>bilanciere</strong></span> esegue un'oscillazione completa avanti e indietro quattro volte al secondo, colpendo l'<span class="color_blue"><strong>ancora</strong></span> due volte per ogni ciclo, per un totale di 8 <em>battiti</em> al secondo o 28.800 alternanze all'ora. Sebbene orologi diversi possano avere frequenze diverse, tutti compiono un piccolo scatto della <span class="color_hand"><strong>lancetta dei secondi</strong></span> molte volte al secondo, dando agli orologi meccanici l'illusione di un movimento della lancetta molto fluido.</p>
+
+            <p>In linea di principio, tutti i pezzi che abbiamo qui sono sufficienti per far funzionare l'orologio, ma mancano ancora alcuni dettagli. Soprattutto, abbiamo lasciato i pezzi in aria, quindi è ora di iniziare l'assemblaggio vero e proprio del movimento completo.</p>
+
+            <h1 id="mainplate">Platina<a href="#mainplate" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Inizieremo con la <strong>platina</strong>, che forma il corpo principale del movimento:</p>
+
+            <div class="drawer_container ratio_100" id="main_plate"></div>
+
+            <p>Nota che ha <em>molte</em> aperture diverse – le riempiremo tutte entro la fine di questo articolo. Gli elementi rosa sono ancora <span class="color_jewel"><strong>rubini sintetici</strong></span>. Formano i cuscinetti in cui possono ruotare gli assi dei vari componenti. Osserviamo da vicino una semplice pietra:</p>
+
+            <div class="drawer_container ratio_100" id="jewel"></div>
+
+            <p>Nota che la <span class="color_jewel"><strong>pietra</strong></span> ha un piccolo bacino. Per ridurre ulteriormente le perdite di energia dei componenti rotanti, una piccola quantità di olio speciale viene inserita in quella cavità. Quell'olio aderisce alla <span class="color_jewel"><strong>pietra</strong></span> e all'asse che ruota al suo interno per ridurre ulteriormente l'attrito, il che consente all'orologio di funzionare più a lungo con una singola carica, riducendo anche l'usura dei delicati componenti meccanici.</p>
+
+            <p>I primi due componenti che monteremo sulla platina sono la <span class="color_cyan"><strong>ruota di scappamento</strong></span> e l'<span class="color_blue"><strong>ancora</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="pallet_fork_assembly"></div>
+            <div id="pallet_fork_assembly_sl0"  class="slider_assembly"></div>
+
+            <p>L'<span class="color_blue"><strong>ancora</strong></span> viene poi chiusa superiormente dal <span class="color_bridge"><strong>ponte dell'ancora</strong></span>. Quel <span class="color_bridge"><strong>ponte</strong></span> regge l'altra estremità dell'asse dell'<span class="color_blue"><strong>ancora</strong></span>, ed è fissato alla platina con <span class="color_dark_gray"><strong>due viti</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="pallet_fork_bridge_assembly"></div>
+            <div id="pallet_fork_bridge_assembly_sl0"  class="slider_assembly"></div>
+
+            <p>Nota che in questo orologio il movimento laterale dell'<span class="color_blue"><strong>ancora</strong></span> è limitato dalla forma dei due pomelli nella parte centrale del <span class="color_bridge"><strong>ponte dell'ancora</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="pallet_fork_limits"></div>
+            <div id="pallet_fork_limits_sl0" class="slider_blue"></div>
+
+            <p>Questo garantisce che la <span class="color_cyan"><strong>ruota di scappamento</strong></span> possa spingere l'<span class="color_blue"><strong>ancora</strong></span> solo fino a un certo punto, prima che il movimento sia fisicamente fermato da questi pomelli.</p>
+
+            <p>Successivamente, possiamo inserire il resto del treno di ruote. Tutte e quattro le ruote sono disposte in modo ingegnoso da occupare solo poco spazio:</p>
+
+            <div class="drawer_container ratio_100" id="main_plate_gears"></div>
+            <div id="main_plate_gears_sl0"  class="slider_assembly"></div>
+
+            <p>Nota che la <span class="color_green"><strong>quarta ruota</strong></span> passa direttamente attraverso il centro dell'orologio – puoi vedere il suo asse sporgere dall'altro lato. Alla fine del nostro assemblaggio, attaccheremo la lancetta dei secondi sull'estremità di quell'asse lungo. Per fissare tutti gli elementi in posizione, li copriamo con un <span class="color_bridge"><strong>ponte del treno di ruote</strong></span>, che fornisce il supporto per le altre estremità degli assi di tutte le parti rotanti. Quel <span class="color_bridge"><strong>ponte</strong></span> viene <span class="color_dark_gray"><strong>avvitato</strong></span> alla platina per tenere tutto in posizione:</p>
+
+            <div class="drawer_container ratio_100" id="main_plate_gears2"></div>
+            <div id="main_plate_gears2_sl0" class="slider_assembly"></div>
+
+            <p>L'unico componente del meccanismo iniziale che non abbiamo ancora montato è il bilanciere, che forma un piccolo sotto-assemblaggio. Costruiamolo prima, attaccando tutte le parti al <span class="color_bridge"><strong>ponte del bilanciere</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="balance_assembly"></div>
+            <div id="balance_assembly_sl0"  class="slider_assembly"></div>
+
+            <p>Nota che la <span class="color_gray"><strong>spirale del bilanciere</strong></span> è molto delicata e la <span class="color_violet"><strong>ruota del bilanciere</strong></span> finisce per distenderla. Per la sua sottigliezza, la <span class="color_gray"><strong>spirale del bilanciere</strong></span> è spesso chiamata <em>spirale fine</em> o <em>spirale</em>. I componenti <span class="color_yellow"><strong>gialli</strong></span> e <span class="color_cyan"><strong>turchesi</strong></span> regolano entrambi il comportamento del bilanciere. Vediamo come funzionano in azione:</p>
+
+            <div class="drawer_container ratio_100" id="balance_assembly2"></div>
+            <div id="balance_assembly2_sl0"  class="slider_yellow"></div>
+            <div id="balance_assembly2_sl1"  class="slider_cyan"></div>
+
+            <p>I <span class="color_yellow"><strong>componenti gialli</strong></span> sono saldamente attaccati alla <span class="color_gray"><strong>spirale del bilanciere</strong></span> e ruotandoli possiamo regolare la posizione di riposo della <span class="color_violet"><strong>ruota del bilanciere</strong></span> e della sua <span class="color_jewel"><strong>pietra d'impulso</strong></span>. Questo garantisce che sia la fase di "tic" che quella di "tac" dell'oscillazione del <span class="color_violet"><strong>bilanciere</strong></span> richiedano la stessa quantità di tempo.</p>
+
+            <p>I <span class="color_cyan"><strong>componenti turchesi</strong></span> possono scorrere liberamente sulla <span class="color_gray"><strong>spirale</strong></span>, ma riducono o aumentano la sua lunghezza efficace poiché impediscono alla sezione terminale della <span class="color_gray"><strong>spirale</strong></span> di oscillare liberamente. Regolando la posizione di questi <span class="color_cyan"><strong>componenti turchesi</strong></span> possiamo modificare la durata di un singolo battito e far andare l'orologio leggermente più veloce o più lento. Quella regolazione della velocità può anche essere affinata usando la <span class="color_gray"><strong>vite</strong></span> nella parte superiore – la sua testa non è centrata, quindi quando viene girata ruoterà delicatamente la piccola <span class="color_cyan"><strong>forcella turchese</strong></span>.</p>
+
+            <p>La <span class="color_gray"><strong>spirale del bilanciere</strong></span> è realizzata con leghe speciali come il <a href="https://en.wikipedia.org/wiki/Nivarox">Nivarox</a> che mantengono la rigidità della molla invariante alle variazioni di temperatura, il che migliora la precisione complessiva della misurazione del tempo.</p>
+
+            <p>La parte finale dell'assemblaggio del bilanciere è il meccanismo antiurto, che consiste nella <span class="color_yellow"><strong>cassa</strong></span>, <span class="color_jewel"><strong>due pietre</strong></span> e una <span class="color_cyan"><strong>piccola molla</strong></span> che tiene tutto in posizione:</p>
+
+            <div class="drawer_container ratio_100" id="balance_assembly3"></div>
+            <div id="balance_assembly3_sl0"  class="slider_assembly"></div>
+
+            <p>Questo meccanismo protegge le fragili punte dell'<span class="color_violet"><strong>asse del bilanciere</strong></span> dalla rottura quando l'orologio subisce una brusca scossa. Vediamo come questi pezzi agiscono insieme quando l'<span class="color_violet"><strong>asse del bilanciere</strong></span> viene scosso:</p>
+
+            <div class="drawer_container ratio_100" id="shock_protector"></div>
+            <div id="shock_protector_sl0" class="slider_violet"></div>
+
+            <p>Quando l'orologio viene scosso, il movimento dell'<span class="color_violet"><strong>asse</strong></span> è assorbito dalla <span class="color_cyan"><strong>molla</strong></span>, in modo simile al sistema di sospensione di un'automobile. Se la scossa è molto forte, la parte molto più spessa e robusta dell'<span class="color_violet"><strong>asse del bilanciere</strong></span> porta il carico attraverso la <span class="color_gray"><strong>cassa</strong></span>, proteggendo la punta fragile dalla rottura.</p>
+
+            <p>Montiamo l'intero sotto-assemblaggio del bilanciere nel resto del movimento che abbiamo costruito finora. Nota che l'altra estremità dell'asse della <span class="color_violet"><strong>ruota del bilanciere</strong></span> si appoggia anche sulle pietre di protezione antiurto incorporate nella platina:</p>
+
+            <div class="drawer_container ratio_100" id="balance_assembly_assembly"></div>
+            <div id="balance_assembly_assembly_sl0"  class="slider_assembly"></div>
+
+            <p>Con quest'ultimo passaggio, abbiamo effettivamente finito di ricreare il nucleo del meccanismo dell'orologio che in precedenza avevamo visto fluttuare in aria. Tuttavia, potresti ricordare che ho glissato sul piccolo dettaglio di come fare in modo che la <span class="color_gray"><strong>molla motrice</strong></span> rimanga carica. Vediamo cosa succede se proviamo effettivamente a caricare l'orologio usando il <span class="color_yellow"><strong>perno di carica</strong></span>. Per chiarezza, ho anche praticato un foro nella parte superiore del <span class="color_red"><strong>bariletto</strong></span> in modo che tu possa vedere la <span class="color_gray"><strong>molla</strong></span> all'interno:</p>
+
+            <div class="drawer_container ratio_100" id="arbor_spring_wind"></div>
+            <div id="arbor_spring_wind_sl0" class="slider_yellow"></div>
+
+            <p>Finché il <span class="color_yellow"><strong>perno di carica</strong></span> è tenuto fermo, la <span class="color_gray"><strong>molla motrice</strong></span> può alimentare il resto dell'orologio – puoi vedere la rotazione della <span class="color_hand"><strong>lancetta dei secondi</strong></span> attaccata alla <span class="color_green"><strong>quarta ruota</strong></span> sull'altro lato dell'orologio. Tuttavia, quando lasciamo andare il <span class="color_yellow"><strong>perno di carica</strong></span>, la <span class="color_gray"><strong>molla motrice</strong></span> trova un modo facile per rilasciare la sua tensione girando semplicemente indietro il <span class="color_yellow"><strong>perno di carica</strong></span> – la <span class="color_gray"><strong>molla</strong></span> perde rapidamente tutta l'energia immagazzinata e l'orologio si ferma.</p>
+
+            <p>Per impedire alla <span class="color_gray"><strong>molla motrice</strong></span> di svolgersi da sola, dobbiamo impedire al <span class="color_yellow"><strong>perno di carica</strong></span> di girare in senso antiorario, pur consentendo la rotazione <em>oraria</em> in modo da poter caricare la <span class="color_gray"><strong>molla</strong></span>. Questo problema apparentemente complicato è risolto con un meccanismo molto semplice noto come lo <em>scatto</em> – vediamo come funziona.</p>
+
+            <h1 id="click">Scatto<a href="#click" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Per continuare lo sviluppo del nostro assemblaggio, dobbiamo prima posizionare una solida base nella forma del <span class="color_bridge"><strong>ponte del bariletto</strong></span> – regge il <span class="color_red"><strong>bariletto</strong></span> in posizione e fornisce struttura per le altre parti. Poiché questo <span class="color_bridge"><strong>ponte</strong></span> renderà alcune aree inaccessibili, stiamo anche per attaccare una <span class="color_cyan"><strong>piccola leva</strong></span> a cui torneremo in un momento successivo:</p>
+
+            <div class="drawer_container ratio_100" id="arbor_barrel_bridge"></div>
+            <div id="arbor_barrel_bridge_sl0" class="slider_assembly"></div>
+
+            <p>Poi, avviteremo la <span class="color_green"><strong>ruota a scrocco</strong></span> sul <span class="color_yellow"><strong>perno di carica</strong></span>. Nota che la <span class="color_green"><strong>ruota a scrocco</strong></span> ha un'apertura quadrata, che corrisponde alla forma quadrata della parte superiore del <span class="color_yellow"><strong>perno di carica</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="arbor_ratchet_wheel"></div>
+            <div id="arbor_ratchet_wheel_sl0" class="slider_assembly"></div>
+
+            <p>Quelle forme quadrate corrispondenti faranno girare il <span class="color_yellow"><strong>perno di carica</strong></span> quando la <span class="color_green"><strong>ruota a scrocco</strong></span> viene girata. Ho temporaneamente rimosso la <span class="color_dark_gray"><strong>vite</strong></span> per rendere le cose più facili da vedere:</p>
+
+            <div class="drawer_container ratio_100" id="arbor_ratchet_wheel_turn"></div>
+            <div id="arbor_ratchet_wheel_turn_sl0" class="slider_green"></div>
+
+            <p>Ecco i tre pezzi critici del puzzle. Per prima cosa, mettiamo il piccolo <span class="color_blue"><strong>scatto</strong></span> nell'apertura in cima al <span class="color_bridge"><strong>ponte del bariletto</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="click_assembly"></div>
+            <div id="click_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Nell'intervallo consentito, lo <span class="color_blue"><strong>scatto</strong></span> può ruotare avanti e indietro sul suo piccolo asse:</p>
+
+            <div class="drawer_container ratio_100" id="click_rotation"></div>
+            <div id="click_rotation_sl0" class="slider_blue"></div>
+
+            <p>Il secondo pezzo del puzzle è una <span class="color_red"><strong>molla di scatto</strong></span>. Questo piccolo pezzo di metallo è molto elastico. Quando lo <span class="color_green"><strong>schiacciamo</strong></span>, vuole tornare indietro a scatto:</p>
+
+            <div class="drawer_container ratio_100" id="click_spring_flex"></div>
+            <div id="click_spring_flex_sl0" class="slider_red"></div>
+
+            <p>Comprimiamo un po' quella <span class="color_red"><strong>molla di scatto</strong></span> e la inseriamo anche nel <span class="color_bridge"><strong>ponte del bariletto</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="click_spring_assembly"></div>
+            <div id="click_spring_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Nota che quando proviamo a ruotare lo <span class="color_blue"><strong>scatto</strong></span>, la <span class="color_red"><strong>molla di scatto</strong></span> lo spingerà di nuovo in posizione non appena lo lasciamo andare:</p>
+
+            <div class="drawer_container ratio_100" id="click_rotation_spring"></div>
+            <div id="click_rotation_spring_sl0" class="slider_blue"></div>
+
+            <p>Il pezzo finale del puzzle è la <span class="color_yellow"><strong>ruota di corona</strong></span>, che si posiziona anche sul <span class="color_bridge"><strong>ponte del bariletto</strong></span>. È fissata con una <span class="color_dark_gray"><strong>vite</strong></span> con filettatura sinistra – a differenza della maggior parte delle viti normali, questa si stringe ruotando in senso <em>antiorario</em>:</p>
+
+            <div class="drawer_container ratio_100" id="crown_wheel_assembly"></div>
+            <div id="crown_wheel_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Nota come i denti della <span class="color_yellow"><strong>ruota di corona</strong></span> interagiscono con la <span class="color_green"><strong>ruota a scrocco</strong></span>. Sebbene sembri che alla <span class="color_yellow"><strong>ruota di corona</strong></span> manchi un dente sì e uno no, i due ingranaggi possono comunque ingranare e funzionare insieme. Gli spazi nella <span class="color_yellow"><strong>ruota di corona</strong></span> consentono al piccolo perno dello <span class="color_blue"><strong>scatto</strong></span> di cadere tra i denti della <span class="color_yellow"><strong>ruota di corona</strong></span>.</p>
+
+            <p>Se <span class="color_turn"><strong>giriamo</strong></span> la <span class="color_yellow"><strong>ruota di corona</strong></span> in senso antiorario, ingrana con la <span class="color_green"><strong>ruota a scrocco</strong></span> e carica la molla. Nota come i denti della <span class="color_yellow"><strong>ruota di corona</strong></span> finiscono per spingere via lo <span class="color_blue"><strong>scatto</strong></span>, che però scatta di nuovo non appena c'è dello spazio:</p>
+
+            <div class="drawer_container ratio_100" id="crown_wheel_ccw"></div>
+            <div id="crown_wheel_ccw_sl0" class="slider_assembly"></div>
+
+            <p>Quando lo <span class="color_blue"><strong>scatto</strong></span> scatta di nuovo e colpisce la <span class="color_yellow"><strong>ruota di corona</strong></span>, produce un suono di <em>clic</em>, che spiega il suo nome.</p>
+
+            <p>La rotazione antioraria della <span class="color_yellow"><strong>ruota di corona</strong></span> ci consente di caricare la molla motrice, quindi vediamo cosa succede quando proviamo a <span class="color_turn"><strong>girarla</strong></span> nella direzione opposta. Nell'animazione qui sotto, nota come i denti della <span class="color_yellow"><strong>ruota di corona</strong></span> si inceppano con lo <span class="color_blue"><strong>scatto</strong></span>, impedendo la rotazione della <span class="color_yellow"><strong>ruota di corona</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="crown_wheel_cw"></div>
+            <div id="crown_wheel_cw_sl0" class="slider_assembly"></div>
+
+            <p>Questo semplice meccanismo ci consente di caricare la molla motrice girando la <span class="color_yellow"><strong>ruota di corona</strong></span>, cosa che puoi fare nell'animazione qui sotto. Lo <span class="color_blue"><strong>scatto</strong></span> impedisce anche alla molla motrice di svolgersi da sola – ecco perché non puoi trascinare indietro il cursore senza riavviare l'intera simulazione:</p>
+
+            <div class="drawer_container ratio_100" id="crown_wheel_go"></div>
+            <div id="crown_wheel_go_sl0" class="slider_yellow"></div>
+
+            <p>La <span class="color_hand"><strong>lancetta dei secondi</strong></span> sull'altro lato dell'orologio mostra come vengono tracciati i secondi, ma un orologio funzionale dovrebbe mostrare anche minuti e ore. Vediamo come il movimento di questo orologio raggiunge questi obiettivi con un insieme di ruote che formano il cosiddetto <em>treno delle sfere</em>.</p>
+
+            <h1 id="motion-works">Treno delle Sfere<a href="#motion-works" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Nel nostro movimento, la lancetta dei secondi è montata in modo intelligente sulla quarta ruota del treno di ruote, poiché quella ruota ruota una volta al minuto con grande precisione. Affinché la lancetta dei minuti giri al ritmo corretto, abbiamo bisogno che <em>qualche</em> asse ruoti 60 volte più lentamente. Fortunatamente, i progettisti di questo movimento di orologio hanno utilizzato un modo ingegnoso per sfruttare parte di quella riduzione di velocità dagli altri ingranaggi.</p>
+
+            <p>Se guardi attentamente, puoi vedere che il piccolo pignone della <span class="color_yellow"><strong>terza ruota</strong></span> dall'altro lato dell'orologio è esposto attraverso una piccola apertura. Possiamo montare un <span class="color_green"><strong>cannotto dei minuti</strong></span> con la sua <span class="color_blue"><strong>ruota motrice</strong></span> al centro dell'orologio e far ingranare quella <span class="color_blue"><strong>ruota motrice</strong></span> con il <span class="color_yellow"><strong>piccolo pignone</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="cannon_pinion_assembly"></div>
+            <div id="cannon_pinion_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Quando quella <span class="color_yellow"><strong>terza ruota</strong></span> ruota, fa girare la <span class="color_blue"><strong>ruota motrice</strong></span> e quindi il <span class="color_green"><strong>cannotto dei minuti</strong></span>. Montando la lancetta dei minuti su quel <span class="color_green"><strong>cannotto dei minuti</strong></span> possiamo tenere traccia dei minuti che passano – il numero di denti in tutte le ruote coinvolte è calcolato attentamente per ottenere la riduzione di velocità di 60 volte desiderata rispetto alla lancetta dei secondi.</p>
+
+            <p>Vediamo la lancetta dei secondi e la lancetta dei minuti funzionare insieme nell'animazione qui sotto. Il cursore ti consente di controllare la velocità del tempo che scorre, così non devi aspettare a lungo per vedere le lancette cambiare posizione:</p>
+
+            <div class="drawer_container ratio_100" id="cannon_pinion_action"></div>
+            <div id="cannon_pinion_action_sl0"></div>
+
+            <p>La lancetta delle ore stessa deve ruotare 12 volte più lentamente della lancetta dei minuti, ma possiamo facilmente ottenere questo risultato usando due ruote aggiuntive. La <span class="color_red"><strong>ruota dei minuti</strong></span> intermedia ingrana con il <span class="color_green"><strong>cannotto dei minuti</strong></span>, e la <span class="color_yellow"><strong>ruota delle ore</strong></span> ingrana con il pignone di quella <span class="color_red"><strong>ruota dei minuti</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="hour_wheel_assembly"></div>
+            <div id="hour_wheel_assembly_sl0" class="slider_assembly"></div>
+
+            <p>La <span class="color_yellow"><strong>ruota delle ore</strong></span> può ruotare liberamente sul <span class="color_green"><strong>cannotto dei minuti</strong></span> in modo che possano entrambi girare indipendentemente l'uno dall'altro. Mettendo la lancetta delle ore su quella <span class="color_yellow"><strong>ruota delle ore</strong></span>, possiamo completare l'assemblaggio del meccanismo che aziona le lancette dell'orologio. Ho anche attaccato un <em>quadrante</em> che ha segnato ciascuna delle dodici ore – ci permette effettivamente di leggere l'ora che mostrano le lancette:</p>
+
+            <div class="drawer_container ratio_100" id="hour_wheel_action"></div>
+            <div id="hour_wheel_action_sl0"></div>
+
+            <p>La misurazione del tempo è la funzione fondamentale di ogni orologio, ma molti dispositivi vanno oltre aggiungendo varie caratteristiche aggiuntive note come <em>complicazioni</em>. Sebbene il nostro movimento non sia molto sofisticato, ha una bella complicazione che mostra il giorno corrente del mese nella piccola finestrella sul lato destro del quadrante. Vediamo come viene implementata questa funzione.</p>
+
+            <h1 id="date">Datario<a href="#date" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Il meccanismo del datario in questo orologio è composto da quattro parti principali – la <span class="color_red"><strong>molla di scatto del datario</strong></span>, la <span class="color_green"><strong>ruota d'avanzamento</strong></span>, il <span class="color_bridge"><strong>disco con la sua</strong></span> <span class="color_blue"><strong>ruota</strong></span> e il grande anello del datario stesso con tutti i 31 giorni possibili impressi su di esso:</p>
+
+            <div class="drawer_container ratio_100" id="date_assembly"></div>
+            <div id="date_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Per spiegare come funziona questo meccanismo, nasconderò prima tutte le parti non correlate. Rimuoverò anche il coperchio dalla <span class="color_green"><strong>ruota d'avanzamento</strong></span>, che rivela una <span class="color_orange"><strong>piccola molla a torsione</strong></span> nascosta all'interno. Vediamo come questi pezzi lavorano insieme quando la <span class="color_yellow"><strong>ruota delle ore</strong></span> ruota. Puoi andare avanti e indietro nel tempo usando il cursore:</p>
+
+            <div class="drawer_container ratio_100" id="date_action"></div>
+            <div id="date_action_sl0"></div>
+
+            <p>Mentre la <span class="color_yellow"><strong>ruota delle ore</strong></span> gira, ruota la <span class="color_blue"><strong>ruota</strong></span> nel <span class="color_bridge"><strong>disco</strong></span>. L'altro lato di quella <span class="color_blue"><strong>ruota</strong></span> poi gira la <span class="color_green"><strong>ruota d'avanzamento</strong></span> e la <span class="color_orange"><strong>molla a torsione</strong></span> ad essa attaccata. Quella <span class="color_orange"><strong>molla</strong></span> si aggrappa a un dente sull'anello del datario e si flette, ma a un certo punto inizia a spingere in avanti l'anello del datario. Quando l'anello ruota abbastanza la <span class="color_red"><strong>molla di scatto del datario</strong></span> fa scattare rapidamente l'anello alla posizione successiva.</p>
+
+            <p>Potresti chiederti perché abbiamo bisogno di questo meccanismo complicato in primo luogo. Si potrebbe ingenuamente supporre di poter collegare direttamente la rotazione dell'anello del datario alla rotazione della <span class="color_yellow"><strong>ruota delle ore</strong></span>, in modo simile a come la <span class="color_yellow"><strong>ruota delle ore</strong></span> ruota in sincronia con i minuti, ma a un ritmo più lento. Sfortunatamente, questo farebbe sì che la data corrente ruotasse <em>continuamente</em> sotto la piccola finestrella nel quadrante, rendendola difficile da leggere. Puoi vedere questo comportamento sul lato sinistro nell'animazione qui sotto:</p>
+
+            <div class="drawer_container ratio_60" id="date_flow"></div>
+
+            <p>Sul lato destro puoi vedere l'indicatore della data azionato dal meccanismo che abbiamo appena costruito – la data cambia solo intorno alla mezzanotte. Potresti aver capito che il tracciamento della data nel nostro movimento non è particolarmente intelligente. Questo orologio conta sempre 31 giorni ogni mese, quindi dobbiamo cambiare la data il giorno dopo che si verifica un mese più breve. Inoltre, se l'orologio non ha funzionato per un po', l'ora stessa potrebbe essere impostata in modo errato. Dobbiamo trovare un modo per regolare la data e l'ora del nostro orologio.</p>
+
+            <p>Fortunatamente, le ruote che azionano la lancetta dei minuti, la lancetta delle ore e l'indicatore della data sono tutte collegate, quindi possiamo regolare tutto girando una <span class="color_red"><strong>singola ruota</strong></span>. Nasconderò brevemente la <span class="color_yellow"><strong>ruota delle ore</strong></span> per rendere le cose visibili:</p>
+
+            <div class="drawer_container ratio_100" id="hour_wheel_time_set"></div>
+            <div id="hour_wheel_time_set_sl0" class="slider_red"></div>
+
+            <p>Nota che quando giriamo la <span class="color_red"><strong>ruota dei minuti</strong></span> solo il <span class="color_green"><strong>cannotto dei minuti</strong></span> gira. Quel <span class="color_green"><strong>cannotto</strong></span> si adatta strettamente all'interno della sua <span class="color_blue"><strong>ruota motrice</strong></span> – di solito gira con quella <span class="color_blue"><strong>ruota</strong></span>. Tuttavia, quando la <span class="color_blue"><strong>ruota motrice</strong></span> non può ruotare perché è bloccata dal resto del treno di ruote, il <span class="color_green"><strong>cannotto dei minuti</strong></span> può superare l'attrito di quell'accoppiamento stretto e ruotare da solo. Questo ci consente di impostare l'ora senza interferire con il treno di ruote, che potrebbe rompere le parti delicate.</p>
+
+            <p>Con la <span class="color_yellow"><strong>ruota delle ore</strong></span> al suo posto, la rotazione della <span class="color_red"><strong>ruota dei minuti</strong></span> imposta anche l'ora e, se giriamo quella <span class="color_red"><strong>ruota</strong></span> abbastanza a lungo, anche la data:</p>
+
+            <div class="drawer_container ratio_100" id="hour_wheel_time_set2"></div>
+            <div id="hour_wheel_time_set2_sl0" class="slider_red"></div>
+
+            <p>Ad ogni passo il nostro orologio diventa più completo, ma abbiamo ancora alcune soluzioni da trovare. Per cambiare l'ora e per caricare la molla motrice, dobbiamo girare gli ingranaggi interni del movimento, che normalmente sono nascosti in sicurezza all'interno della cassa dell'orologio.</p>
+
+            <p>Inoltre, ogni mese che dura meno di 31 giorni, dobbiamo attualmente modificare l'impostazione dell'ora, poiché è l'unico modo per regolare la data. Idealmente, troveremmo un modo per impostare la data separatamente dall'ora.</p>
+
+            <p>Per risolvere questi problemi assembleremo il <em>meccanismo di carica e messa all'ora</em>, un meccanismo che ci permetterà di risolvere tutti questi problemi.</p>
+
+            <h1 id="keyless-works">Meccanismo di Carica e Messa all'Ora<a href="#keyless-works" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Prima di tutto, guardiamo la <span class="color_dark_gray"><strong>corona</strong></span>, che è la principale interfaccia per operare l'orologio, e il <span class="color_gray"><strong>tirante</strong></span> (o albero di corona) ad essa attaccato:</p>
+
+            <div class="drawer_container ratio_100" id="stem_crown"></div>
+
+            <p>La corona si trova liberamente all'esterno dell'orologio e viene toccata direttamente dall'utente. Nota che parte del tirante ha una sezione trasversale quadrata. Il tirante porta due componenti aggiuntivi – il <span class="color_red"><strong>pignone di carica</strong></span> e il <span class="color_blue"><strong>pignone scorrevole</strong></span>. Prima, facciamoli scivolare per vedere come si inseriscono:</p>
+
+            <div class="drawer_container ratio_100" id="winding_sliding_pinion"></div>
+            <div id="winding_sliding_pinion_sl0" class="slider_assembly"></div>
+
+            <p>Il <span class="color_red"><strong>pignone di carica</strong></span> ha un'apertura circolare in modo da poter ruotare facilmente sul <span class="color_gray"><strong>tirante</strong></span>. Tuttavia, il <span class="color_blue"><strong>pignone scorrevole</strong></span> ha un'apertura <em>quadrata</em> che si allinea con la sezione del <span class="color_gray"><strong>tirante</strong></span> che ha una forma quadrata. Quell'incastro quadrato fa sì che il <span class="color_blue"><strong>pignone scorrevole</strong></span> ruoti con il <span class="color_gray"><strong>tirante</strong></span> quando la <span class="color_turn"><strong>corona gira</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="sliding_pinion_rotation"></div>
+            <div id="sliding_pinion_rotation_sl0" class="slider_crown_turn"></div>
+
+            <p>Inseriamo questi pezzi nell'assemblaggio principale. Ho temporaneamente rimosso l'anello del datario in modo che non sia di intralcio:</p>
+
+            <div class="drawer_container ratio_100" id="crown_stem_pinion_assembly"></div>
+            <div id="crown_stem_pinion_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Nota che il <span class="color_red"><strong>pignone di carica</strong></span> ingrana con la <span class="color_yellow"><strong>ruota di corona</strong></span> sull'altro lato dell'orologio. Per far girare effettivamente il <span class="color_red"><strong>pignone di carica</strong></span> dobbiamo prima spostare il <span class="color_blue"><strong>pignone scorrevole</strong></span> completamente verso di esso – rappresento questa forza di spinta con la <span class="color_blue"><strong>freccia blu</strong></span> qui sotto. Se ora <span class="color_turn"><strong>giriamo la corona</strong></span> la forma corrispondente delle superfici vicine sul <span class="color_red"><strong>pignone di carica</strong></span> e sul <span class="color_blue"><strong>pignone scorrevole</strong></span> fa sì che si interbloccino. Siamo in grado di girare la <span class="color_yellow"><strong>ruota di corona</strong></span> e il resto del macchinario di carica della molla motrice <span class="color_turn"><strong>girando la corona</strong></span> in senso orario:</p>
+
+            <div class="drawer_container ratio_100" id="crown_stem_pinion_turn"></div>
+            <div id="crown_stem_pinion_turn_sl0" class="slider_crown_turn"></div>
+
+            <p>Tuttavia, se <span class="color_turn"><strong>ruotiamo</strong></span> la corona nell'<em>altra</em> direzione, la forma delle superfici vicine spingerà via il <span class="color_blue"><strong>pignone scorrevole</strong></span>, perché la <span class="color_yellow"><strong>ruota di corona</strong></span>, e quindi il <span class="color_red"><strong>pignone di carica</strong></span>, non possono ruotare nella direzione opposta. Questo meccanismo di sicurezza garantisce che qualsiasi rotazione forzata della corona nella direzione "sbagliata" non rompa il movimento.</p>
+
+            <p>Sembra che abbiamo raggiunto l'obiettivo di poter caricare la molla semplicemente <span class="color_turn"><strong>girando la corona</strong></span>. Sfortunatamente, abbiamo ancora un piccolo problema da risolvere – abbiamo bisogno di qualcosa che eserciti effettivamente la forza che spinge il <span class="color_blue"><strong>pignone scorrevole</strong></span> verso il <span class="color_red"><strong>pignone di carica</strong></span>.</p>
+
+            <p>Inoltre, in alcuni casi vogliamo che la <span class="color_turn"><strong>rotazione della corona</strong></span> serva a scopi diversi. Oltre a caricare la molla motrice, nel nostro orologio vogliamo poter regolare la data e, separatamente, l'ora. Sceglieremo ciascuna di queste tre azioni tirando la corona in entrata e in uscita.</p>
+
+            <p>Costruiamo un meccanismo che risolva questi problemi. Per prima cosa, metteremo la <span class="color_yellow"><strong>leva correttrice</strong></span> e la <span class="color_green"><strong>leva di messa all'ora</strong></span> al loro posto:</p>
+
+            <div class="drawer_container ratio_100" id="corrector_setting_level_assembly"></div>
+            <div id="corrector_setting_level_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Se ora <span class="color_pull"><strong>tiriamo la corona</strong></span> in entrata e in uscita, queste parti ruoteranno sui loro piccoli perni con un'interazione piuttosto complessa tra loro:</p>
+
+            <div class="drawer_container ratio_100" id="corrector_setting_level_interaction"></div>
+            <div id="corrector_setting_level_interaction_sl0" class="slider_crown_pull"></div>
+
+            <p>Con le altre parti in mezzo potrebbe essere difficile vedere cosa sta succedendo, quindi guardiamo questi componenti da soli. Nota l'incastro intricato che avviene quando <span class="color_pull"><strong>tiriamo la corona</strong></span> in entrata e in uscita con il cursore:</p>
+
+            <div class="drawer_container ratio_100" id="corrector_setting_level_interaction1"></div>
+            <div id="corrector_setting_level_interaction1_sl0" class="slider_crown_pull"></div>
+
+            <p>Una scanalatura nel <span class="color_gray"><strong>tirante</strong></span> finisce per bloccarsi con un <span class="color_red"><strong>piccolo perno</strong></span> nella <span class="color_green"><strong>leva di messa all'ora</strong></span>, facendola ruotare quando la <span class="color_pull"><strong>corona viene tirata</strong></span>. L'<span class="color_orange"><strong>altro perno</strong></span> sulla <span class="color_green"><strong>leva di messa all'ora</strong></span> finisce per spingere e agganciarsi con la <span class="color_yellow"><strong>leva correttrice</strong></span>, facendola ruotare anch'essa.</p>
+
+            <p>Finora il meccanismo non fa nulla di interessante, quindi mettiamo la <span class="color_orange"><strong>ruota di messa all'ora</strong></span> in cima alla <span class="color_yellow"><strong>leva correttrice</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="setting_wheel_asembly"></div>
+            <div id="setting_wheel_asembly_sl0" class="slider_assembly"></div>
+
+            <p>Quella <span class="color_orange"><strong>ruota</strong></span> può muoversi liberamente sul suo perno. Se ora <span class="color_pull"><strong>tiriamo la corona</strong></span> in entrata e in uscita possiamo vedere che la <span class="color_orange"><strong>ruota di messa all'ora</strong></span> si innesta con il treno delle sfere:</p>
+
+            <div class="drawer_container ratio_100" id="setting_wheel_interaction"></div>
+            <div id="setting_wheel_interaction_sl0" class="slider_crown_pull"></div>
+
+            <p>Girando quella <span class="color_orange"><strong>ruota di messa all'ora</strong></span> saremo in grado di impostare l'ora sull'orologio, ma per girare quella <span class="color_orange"><strong>ruota</strong></span> dobbiamo scorrere il <span class="color_blue"><strong>pignone scorrevole</strong></span> verso di essa in modo che la <span class="color_turn"><strong>rotazione della corona</strong></span> e del <span class="color_blue"><strong>pignone scorrevole</strong></span> ad essa attaccato ruoti la <span class="color_orange"><strong>ruota di messa all'ora</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="setting_wheel_sliding_pinion_interaction"></div>
+            <div id="setting_wheel_sliding_pinion_interaction_sl0" class="slider_crown_turn"></div>
+
+            <p>Questo pone una sfida – dobbiamo controllare la posizione del <span class="color_blue"><strong>pignone scorrevole</strong></span> per, a seconda della modalità, innestare il <span class="color_red"><strong>pignone di carica</strong></span> per caricare la molla motrice, o la <span class="color_orange"><strong>ruota di messa all'ora</strong></span> per impostare l'ora. È qui che entra in gioco il <span class="color_cyan"><strong>tenditore</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="yoke_asembly"></div>
+            <div id="yoke_asembly_sl0" class="slider_assembly"></div>
+
+            <p>Nel primo piano qui sotto puoi osservare che il <span class="color_cyan"><strong>tenditore</strong></span> si inserisce nella scanalatura sul <span class="color_blue"><strong>pignone scorrevole</strong></span>, così man mano che il <span class="color_cyan"><strong>tenditore</strong></span> ruota sul suo perno, spingerà il <span class="color_blue"><strong>pignone scorrevole</strong></span> dentro e fuori, facendolo <em>scorrere</em>. Inoltre, il <span class="color_cyan"><strong>tenditore</strong></span> stesso viene spinto dalla <span class="color_green"><strong>leva di messa all'ora</strong></span> quando <span class="color_pull"><strong>tiriamo la corona</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="yoke_interaction"></div>
+            <div id="yoke_interaction_sl0" class="slider_crown_pull"></div>
+
+            <p>Siamo quasi finiti con questo piccolo meccanismo, dobbiamo solo completare i piccoli dettagli. Prima di tutto, vogliamo tenere tutti i pezzi fragili in posizione – attualmente niente impedisce loro di cadere dal loro preciso posizionamento. In secondo luogo, quando <span class="color_pull"><strong>tiriamo la corona</strong></span>, non ci sono fermate distinte nel suo movimento – girando la corona potremmo accidentalmente cambiare la modalità corrente. Infine, quando <span class="color_pull"><strong>spingiamo la corona</strong></span> completamente verso l'interno per tornare alla modalità di carica, vogliamo che il <span class="color_cyan"><strong>tenditore</strong></span> torni affidabilmente alla sua posizione iniziale. È qui che entra in gioco il <span class="color_violet"><strong>scatto della leva di messa all'ora</strong></span> – serve a tutti e tre questi scopi:</p>
+
+            <div class="drawer_container ratio_100" id="jumper_asembly"></div>
+            <div id="jumper_asembly_sl0" class="slider_assembly"></div>
+
+            <p>Quella parte è <span class="color_dark_gray"><strong>avvitata</strong></span> alla platina, il che impedisce alle altre parti di cadere. Le sue varie braccia e gambe aiutano anche a tenere le cose premute. Vediamo come lo <span class="color_violet"><strong>scatto della leva di messa all'ora</strong></span> ci aiuta con gli altri due problemi. Nota le tre piccole scanalature che sto indicando con le <span class="color_dark_gray"><strong>frecce grigie</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="jumper_interaction"></div>
+            <div id="jumper_interaction_sl0" class="slider_crown_pull"></div>
+
+            <p>Mentre <span class="color_pull"><strong>tiriamo la corona</strong></span> in entrata e in uscita, il <span style="#111"><strong>piccolo perno</strong></span> nella <span class="color_green"><strong>leva di messa all'ora</strong></span> finisce per scattare in uno di quei tre posti. Per saltare tra le scanalature, quel <span style="#111"><strong>piccolo perno</strong></span> deve piegare il braccio lungo dello <span class="color_violet"><strong>scatto</strong></span>, il che crea tensione che spinge quel <span style="#111"><strong>piccolo perno</strong></span> nella scanalatura più vicina. Otteniamo così tre posizioni distinte in cui tutti i pezzi possono riposare – una volta bloccati, possiamo girare in modo affidabile la corona senza rischio di cambiare accidentalmente la modalità corrente.</p>
+
+            <p>Infine, sull'altra estremità dello <span class="color_violet"><strong>scatto della leva di messa all'ora</strong></span> abbiamo anche una sezione sottile che è mantenuta in tensione contro il <span class="color_cyan"><strong>tenditore</strong></span> – ne indico la posizione con una <span class="color_dark_gray"><strong>freccia grigia</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="jumper_interaction2"></div>
+            <div id="jumper_interaction2_sl0" class="slider_crown_pull"></div>
+
+            <p>Mentre il <span class="color_cyan"><strong>tenditore</strong></span> ruota, quel pezzo di metallo elastico vuole far ruotare il <span class="color_cyan"><strong>tenditore</strong></span> indietro. Quando la corona è in modalità di impostazione della data o dell'ora, la <span class="color_green"><strong>leva di messa all'ora</strong></span> impedisce al <span class="color_cyan"><strong>tenditore</strong></span> di tornare, ma una volta che torniamo alla modalità di carica, quella molla nello <span class="color_violet"><strong>scatto</strong></span> farà ruotare il <span class="color_cyan"><strong>tenditore</strong></span> indietro causando anche il ritorno del <span class="color_blue"><strong>pignone scorrevole</strong></span>.</p>
+
+            <p>C'è in realtà un altro dettaglio intelligente che si nascondeva in bella vista. Se ricordi, abbiamo messo una piccola <span class="color_cyan"><strong>leva</strong></span> direttamente sulla platina prima di iniziare a lavorare al meccanismo di carica. L'estremità corta di quella <span class="color_cyan"><strong>leva</strong></span> si inserisce nella scanalatura del <span class="color_blue"><strong>pignone scorrevole</strong></span>. Quando <span class="color_pull"><strong>tiriamo la corona</strong></span> e spostiamo il <span class="color_blue"><strong>pignone scorrevole</strong></span>, quella <span class="color_cyan"><strong>leva</strong></span> ruota:</p>
+
+            <div class="drawer_container ratio_100" id="stop_lever_interaction"></div>
+            <div id="stop_lever_interaction_sl0" class="slider_crown_pull"></div>
+
+            <p>Quando viene girata completamente, quella <span class="color_cyan"><strong>leva</strong></span> strofina contro il <span class="color_violet"><strong>bilanciere</strong></span> impedendogli di muoversi – questo ferma l'orologio. Di conseguenza, quando <span class="color_pull"><strong>tiriamo la corona</strong></span> completamente in fuori per entrare nella modalità di impostazione dell'ora, quella <span class="color_cyan"><strong>leva di arresto</strong></span> blocca il <span class="color_violet"><strong>bilanciere</strong></span>, fermando l'orologio in un'azione nota come <em>arresto del bilanciere</em> (o <em>hacking</em>). Questo ci permette di impostare l'ora senza che la lancetta dei secondi continui a cambiare da sola, facilitando una regolazione dell'ora più precisa.</p>
+
+            <p>Diamo un'ultima occhiata alle funzioni di questo intero meccanismo con tutti i pezzi partecipanti al loro posto. Quando la corona è completamente spinta verso l'interno, la sua <span class="color_turn"><strong>rotazione</strong></span> ruoterà il <span class="color_blue"><strong>pignone scorrevole</strong></span>, che fa girare il <span class="color_red"><strong>pignone di carica</strong></span>, poi la <span class="color_yellow"><strong>ruota di corona</strong></span>, e infine la <span class="color_green"><strong>ruota a scrocco</strong></span> per caricare la molla motrice:</p>
+
+            <div class="drawer_container ratio_100" id="crown_wind"></div>
+            <div id="crown_wind_sl0" class="slider_crown_turn"></div>
+
+            <p>Quando la corona è tirata completamente verso l'esterno, la sua <span class="color_turn"><strong>rotazione</strong></span> gira il <span class="color_blue"><strong>pignone scorrevole</strong></span>, la <span class="color_orange"><strong>ruota di messa all'ora</strong></span>, poi la <span class="color_red"><strong>ruota dei minuti</strong></span>, la <span class="color_yellow"><strong>ruota delle ore</strong></span> e il nascosto <span class="color_green"><strong>cannotto dei minuti</strong></span> che ci permette di impostare l'ora:</p>
+
+            <div class="drawer_container ratio_100" id="crown_time_set"></div>
+            <div id="crown_time_set_sl0" class="slider_crown_turn"></div>
+
+            <p>Infine, quando la corona è spinta circa a metà strada, entriamo in modalità di impostazione della data, ma per vederla funzionare dobbiamo ancora attaccare un <span class="color_dark_gray"><strong>correttore della data</strong></span> aggiuntivo che si inserisce nella piccola scanalatura sulla platina:</p>
+
+            <div class="drawer_container ratio_100" id="crown_date_set_assembly"></div>
+            <div id="crown_date_set_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Nota che il <span class="color_dark_gray"><strong>correttore della data</strong></span> può scorrere liberamente su e giù in quella scanalatura. Se ora tiriamo la corona a metà e la <span class="color_turn"><strong>giriamo</strong></span>, finiamo per ruotare quel <span class="color_dark_gray"><strong>correttore della data</strong></span>, che può quindi ingranare con i denti all'interno dell'anello del datario. La <span class="color_red"><strong>molla di scatto del datario</strong></span> si assicura che l'anello del datario si blocchi in una posizione valida:</p>
+
+            <div class="drawer_container ratio_100" id="crown_date_set"></div>
+            <div id="crown_date_set_sl0" class="slider_crown_turn"></div>
+
+            <p>Personalmente, penso che questo intero meccanismo noto come <em>meccanismo di carica e messa all'ora</em> sia una vera meraviglia meccanica. Le interazioni intricate sono così ben bilanciate e ogni parte serve a molti ruoli diversi. I vecchi orologi da tasca venivano caricati con una chiave separata, con la corona usata solo per impostare l'ora, ma gli orologi moderni fanno a meno di una chiave di carica, il che spiega il nome "senza chiave" (dall'inglese <em>keyless works</em>). Con solo pochi pezzi sapientemente sagomati e una singola corona, possiamo controllare varie impostazioni dell'orologio. Prima di andare avanti, fissiamo i pezzi rimanenti con il <span class="color_bridge"><strong>ponte del treno delle sfere</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="minute_bridge_assembly"></div>
+            <div id="minute_bridge_assembly_sl0" class="slider_assembly"></div>
+
+            <p>Siamo quasi finiti di costruire il movimento dell'orologio. L'ultimo componente che assembleremo farà caricare automaticamente l'orologio mentre ci muoviamo.</p>
+
+            <h1 id="automatic-winding">Carica Automatica<a href="#automatic-winding" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Quando la persona che indossa un orologio muove le braccia durante la giornata, l'orientamento di quell'orologio nello spazio cambia molto. Anche durante una passeggiata tranquilla, l'orologio oscilla leggermente rispetto al terreno. Normalmente, tutta l'energia usata per muovere l'orologio va sprecata, ma un meccanismo di carica automatica riesce a catturarne una parte per caricare la molla motrice.</p>
+
+            <p>Prima di tutto, proviamo a capire l'idea principale attaccando il meccanismo completo di carica automatica all'orologio. La sua parte principale è la <span class="color_blue"><strong>massa oscillante</strong></span> che può ruotare liberamente attorno al centro. Quando quella <span class="color_blue"><strong>massa oscillante</strong></span> ruota, aziona un <span class="color_yellow"><strong>gruppo di ruote</strong></span>, con l'<span class="color_orange"><strong>ultima</strong></span> che si collega alla <span class="color_green"><strong>ruota a scrocco</strong></span> usata per caricare la molla motrice nascosta all'interno del <span class="color_red"><strong>bariletto</strong></span>:</p>
+
+            <div class="drawer_container ratio_100" id="automatic_assembly_base"></div>
+            <div id="automatic_assembly_base_sl0" class="slider_assembly"></div>
+
+            <p>Il fatto che la <span class="color_blue"><strong>massa oscillante</strong></span> possa ruotare liberamente è fondamentale. Nell'animazione qui sotto, puoi osservare cosa succede alla <span class="color_blue"><strong>massa oscillante</strong></span> mentre ruoti l'orologio nello spazio trascinandolo. La gravità agisce verso il basso di questo schermo – trascina sempre la <span class="color_blue"><strong>massa oscillante</strong></span> verso il basso, facendola ruotare rispetto al resto dell'orologio:</p>
+
+            <div class="drawer_container ratio_100" id="automatic_gravity"></div>
+
+            <p>Se ricordi la nostra discussione sulla carica dell'orologio, potresti ricordare che la <span class="color_green"><strong>ruota a scrocco</strong></span> può girare solo in una direzione, con lo scatto che impedisce alla molla motrice di svolgersi da sola. Tuttavia, la <span class="color_blue"><strong>massa oscillante</strong></span> può oscillare avanti e indietro, il che normalmente implicherebbe che qualsiasi sistema di ingranaggi connesso a quella <span class="color_blue"><strong>massa oscillante</strong></span> ruoterebbe anche in entrambe le direzioni.</p>
+
+            <p>Se guardi il meccanismo di carica automatica da solo, puoi osservare qualcosa di insolito – man mano che giri la <span class="color_blue"><strong>massa oscillante</strong></span> avanti e indietro con il cursore, la <span class="color_orange"><strong>ruota di uscita</strong></span> gira solo in <em>una</em> direzione. Ho messo un piccolo <strong>punto nero</strong> su quella <span class="color_orange"><strong>ruota</strong></span> per renderlo più facile da vedere:</p>
+
+            <div class="drawer_container ratio_100" id="automatic_behavior"></div>
+            <div id="automatic_behavior_sl0" class="slider_blue"></div>
+
+            <p>Per capire come avviene ciò, guardiamo prima tutti i componenti coinvolti nel meccanismo:</p>
+
+            <div class="drawer_container ratio_100" id="automatic_assembly"></div>
+            <div id="automatic_assembly_sl0" class="slider_assembly"></div>
+
+            <p>La <span class="color_green"><strong>ruota verde</strong></span> è attaccata direttamente al fondo della <span class="color_blue"><strong>massa oscillante</strong></span>, quindi quando la <span class="color_blue"><strong>massa oscillante</strong></span> ruota, quella <span class="color_green"><strong>ruota</strong></span> fa girare le <span class="color_blue"><strong>due ruote blu</strong></span> sul lato inferiore delle <span class="color_yellow"><strong>ruote gialle</strong></span>. La maggior parte di questa composizione è simile a cose che abbiamo visto prima con ingranaggi tenuti in posizione da ponti. Tuttavia, potresti aver intuito che le coppie doppie di ruote <span class="color_yellow"><strong>gialle</strong></span> e <span class="color_blue"><strong>blu</strong></span> sono responsabili della magia qui. Vediamo come sono costruite:</p>
+
+            <div class="drawer_container ratio_100" id="reversing_wheel_assembly"></div>
+            <div id="reversing_wheel_assembly_sl0" class="slider_assembly"></div>
+
+            <p>La <span class="color_blue"><strong>ruota blu</strong></span> può ruotare liberamente sulla <span class="color_yellow"><strong>ruota gialla</strong></span>, e le <span class="color_dark_gray"><strong>leve</strong></span> a forma di pesce possono anch'esse ruotare attorno al loro asse attraverso i fori nella <span class="color_blue"><strong>ruota blu</strong></span>. Nota che la parte interna della <span class="color_yellow"><strong>ruota gialla</strong></span> ha una forma particolare. Nell'animazione qui sotto, ho rimosso la maggior parte della parte centrale della <span class="color_blue"><strong>ruota blu</strong></span> in modo che tu possa vedere cosa succede all'interno. Puoi ruotare quella <span class="color_blue"><strong>ruota</strong></span> avanti e indietro usando il cursore per vedere come le parti interagiscono:</p>
+
+            <div class="drawer_container ratio_100" id="reversing_wheel_interaction"></div>
+            <div id="reversing_wheel_interaction_sl0" class="slider_blue"></div>
+
+            <p>Nota che quando ruoti la <span class="color_blue"><strong>ruota blu</strong></span> in senso antiorario, le <span class="color_dark_gray"><strong>leve</strong></span> scorrono semplicemente attraverso le parti interne della <span class="color_yellow"><strong>ruota gialla</strong></span>. Tuttavia, quando ruoti la <span class="color_blue"><strong>ruota blu</strong></span> in senso <em>orario</em>, una delle <span class="color_dark_gray"><strong>leve</strong></span> si inceppa e inizia a far girare con sé la <span class="color_yellow"><strong>ruota gialla</strong></span>. Questo ingegnoso meccanismo trasferisce la potenza dalla <span class="color_blue"><strong>ruota blu</strong></span> alla <span class="color_yellow"><strong>ruota gialla</strong></span> solo in una direzione.</p>
+
+            <p>Il meccanismo di carica automatica contiene <em>due</em> tali ruote – una azionerà la <span class="color_orange"><strong>ruota di uscita</strong></span> quando ruotata in senso orario, e una che la fa girare quando ruotata in senso antiorario. Nell'animazione qui sotto, puoi osservare cosa succede quando ruoti la <span class="color_green"><strong>ruota</strong></span> attaccata alla massa oscillante. Per rendere le cose più facili da vedere, ho rimosso tutte le parti non funzionali:</p>
+
+            <div class="drawer_container ratio_100" id="automatic_interaction"></div>
+            <div id="automatic_interaction_sl0" class="slider_green"></div>
+
+            <p>Nota che sto evidenziando una coppia di ruote <span class="color_yellow"><strong>gialle</strong></span> e <span class="color_blue"><strong>blu</strong></span> solo quando stanno <em>attivamente</em> trasferendo potenza direttamente dalla <span class="color_green"><strong>ruota della massa oscillante</strong></span> alla <span class="color_orange"><strong>ruota di uscita</strong></span>. Solo una coppia è attiva alla volta – l'altra ruota a vuoto, o agisce come intermediaria per cambiare la direzione di rotazione per assicurarsi che la <span class="color_orange"><strong>ruota di uscita</strong></span> carichi sempre la molla.</p>
+
+            <p>Nota che la <span class="color_orange"><strong>ruota di uscita</strong></span> ruota molto poco rispetto alla <span class="color_green"><strong>ruota</strong></span> attaccata alla massa oscillante, quindi occorre molto movimento del braccio per caricare completamente la molla motrice. Tuttavia, nel corso di una giornata il meccanismo di carica automatica di solito riesce a garantire che la molla motrice rimanga carica.</p>
+
+            <h1 id="the-size-of-it-all">La Dimensione di Tutto Questo<a href="#the-size-of-it-all" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>In tutti gli esempi finora abbiamo avuto il comfort di guardare le parti con un ingrandimento piuttosto grande, ma in quest'ultima animazione qui sotto puoi finalmente vedere quanto sono piccoli tutti i componenti. Trascinando il cursore puoi cambiare la dimensione di visualizzazione:</p>
+
+            <div class="drawer_container ratio_100" id="credit_card_size"></div>
+            <div id="credit_card_size_sl0"></div>
+
+            <p>Quel rettangolo arrotondato che circonda l'orologio corrisponde alla dimensione di una carta di credito – se ne hai una a portata di mano, puoi metterla sullo schermo e trascinare il cursore fino a quando la carta si adatta a quel contorno. Si spera che questo metta davvero in prospettiva quanto piccole siano tutte le parti di cui abbiamo parlato.</p>
+
+            <h1 id="further-watching-and-reading">Per Saperne di Più<a href="#further-watching-and-reading" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Ci sono molti canali YouTube dedicati agli orologi meccanici, ma mi piace particolarmente <a href="https://www.youtube.com/c/WristwatchRevival/videos">Wristwatch Revival</a>, dedicato alla riparazione di orologi rotti, il che spesso implica la completa smontatura di un movimento e la riparazione o sostituzione delle parti danneggiate. Sebbene il creatore non sia un orologiaio professionista, i video sono ricchi di informazioni e molto piacevoli da guardare.</p>
+
+            <p><a href="https://www.amazon.com/Watchmaking-George-Daniels/dp/0856677043">Watchmaking</a> di George Daniels è un libro dedicato al processo di realizzare effettivamente gli orologi da zero. Anche se pochi si imbarcheranno in questo viaggio, la pubblicazione spiega anche molte delle considerazioni necessarie nella progettazione di un movimento di orologio e delle sue parti. Molte pagine del libro sono accompagnate da illustrazioni piuttosto tecniche che aiutano a spiegare i concetti.</p>
+
+            <h1 id="final-words">Parole Finali<a href="#final-words" class="hanchor" ariaLabel="Ancora"><img src="images/anchor.png" width="16px" height="8px"/></a></h1>
+
+            <p>Negli anni '70 gli orologi meccanici iniziarono a essere detronizzati dai modelli al quarzo, che misurano il tempo contando elettronicamente le vibrazioni di un cristallo di quarzo. Con il progresso della tecnologia, i tipici orologi aumentarono sempre più la loro dipendenza dai circuiti digitali. Le moderne incarnazioni "smart" assomigliano ai loro archetipi solo nella forma e nel posizionamento sul polso.</p>
+
+            <p>Gli orologi meccanici non sono precisi come quelli digitali. Richiedono manutenzione e sono più fragili. Nonostante tutti questi svantaggi, questi dispositivi mostrano una <em>vera</em> maestria ingegneristica. Con un uso creativo di ingranaggi, leve e molle in miniatura, un orologio meccanico sorge dai suoi componenti inerti per diventare veramente vivo.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="article_footer">
+        Articolo originale di <strong>Bartosz Ciechanowski</strong> — <a href="https://ciechanow.ski/mechanical-watch/">ciechanow.ski/mechanical-watch/</a><br>
+        Traduzione italiana a scopo divulgativo. Tutte le animazioni e i contenuti tecnici appartengono all'autore originale.<br>
+        Se ti piacciono gli articoli originali, considera di supportare l'autore su <a href="https://www.patreon.com/ciechanowski">Patreon</a>.
+      </div>
+      Copyright &copy; 2022 Bartosz Ciechanowski
+    </div>
+  </div>
+</body>
+
+</html>
